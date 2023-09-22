@@ -38,7 +38,7 @@ import {  NavigationProps } from "../../@types/navigation";
                 secureTextEntry
                />
                <CustomButton
-               onPress={() => navigation.navigate('Home')}
+               onPress={() => navigation.replace('Tabs')}
                >
                  Login
                </CustomButton>
