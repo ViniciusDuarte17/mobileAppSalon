@@ -6,7 +6,8 @@ const Tab = createNativeStackNavigator();
 
 import { Login } from "../pages/Login" 
 import { Signup } from "../pages/Signup" 
-import { Home } from "../pages/Home";
+import { Home } from "../Tabs/Home";
+import Tabs from "../Tabs";
 
 export default function PageRouter(){
   return (
@@ -24,8 +25,8 @@ export default function PageRouter(){
         />
 
         <Tab.Screen
-          name="Home"
-          component={Home}
+          name="Tabs"
+          component={Tabs}
           options={{ headerShown: false }}
         />
       </Tab.Navigator>
