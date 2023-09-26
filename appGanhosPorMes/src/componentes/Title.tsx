@@ -8,7 +8,7 @@ interface PropsTitle extends ITextProps {
     position?: string
 }
 
-export const Title:React.FC<PropsTitle> = ({children, color, position}) => {
+export const Title:React.FC<PropsTitle> = ({children, color, position, ...rest}) => {
 
     return (
       <Text
@@ -16,6 +16,7 @@ export const Title:React.FC<PropsTitle> = ({children, color, position}) => {
         fontSize={"xl"}
         color={color}
         textAlign={position}
+        {...rest}
       >
         {children}
       </Text>

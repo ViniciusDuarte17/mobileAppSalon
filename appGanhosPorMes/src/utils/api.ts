@@ -4,7 +4,7 @@ export const servicos = [
     typeService: "corte simples",
     valueService: 20,
     amount: 3,
-    dataTracker: "2023-08-17T13:05:43.000Z",
+    dataTracker: "08/2023",
     valueTotalByService: 60,
   },
   {
@@ -12,7 +12,7 @@ export const servicos = [
     typeService: "corte simples",
     valueService: 20,
     amount: 5,
-    dataTracker: "2023-08-16T22:25:40.000Z",
+    dataTracker: "09/2023",
     valueTotalByService: 100,
   },
   {
@@ -20,7 +20,7 @@ export const servicos = [
     typeService: "corte completo",
     valueService: 30,
     amount: 2,
-    dataTracker: "2023-08-21T16:26:34.000Z",
+    dataTracker: "10/2023",
     valueTotalByService: 60,
   },
   {
@@ -28,10 +28,32 @@ export const servicos = [
     typeService: "corte completo",
     valueService: 30,
     amount: 6,
-    dataTracker: "2023-08-16T22:25:18.000Z",
+    dataTracker: "11/2023",
     valueTotalByService: 180,
   },
-  {
-    valorTotal: 400,
-  },
+  // {
+  //   id: "980e9afa-a62b-45cd-a36d-b9965629f2e6",
+  //   typeService: "corte completo",
+  //   valueService: 30,
+  //   amount: 6,
+  //   dataTracker: "16/2023",
+  //   valueTotalByService: 180,
+  // },
+  // {
+  //   id: "980e9afa-a62b-45cd-a36d-b9965629f2e7",
+  //   typeService: "corte completo",
+  //   valueService: 30,
+  //   amount: 6,
+  //   dataTracker: "18/2023",
+  //   valueTotalByService: 180,
+  // },
+  // {
+  //   id: "980e9afa-a62b-45cd-a36d-b9965629f2e8",
+  //   typeService: "corte completo",
+  //   valueService: 30,
+  //   amount: 6,
+  //   dataTracker: "20/2023",
+  //   valueTotalByService: 180,
+  // },
+
 ];

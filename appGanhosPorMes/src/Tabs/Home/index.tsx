@@ -1,61 +1,51 @@
 import React, { useState, useEffect } from "react";
-import { VStack} from "native-base"
+import {  VStack, Text, Avatar, ScrollView } from "native-base";
 import { servicos } from "../../utils/api";
 import { BarChart } from "react-native-chart-kit";
-import { Dimensions } from "react-native";
+import { CustomChart } from "../../componentes/CustomChart";
+import { ItypeService } from "../../interface/iTypeService";
+import { Header } from "../../componentes/Header";
+import { Card } from "../../componentes/Card";
 
 
-export const Home = () => {
-  const [byService, setByService] = useState([])
+export const Home:React.FC = () => {
+  const [byService, setByService] = useState<ItypeService[]>([]);
 
-  useEffect( () => {
-     function getService() {
-       const filterServicos = servicos.filter( (item) => item.valueTotalByService !== undefined)
-       setByService(filterServicos)
+  useEffect(() => {
+    function getService() {
+      
+      const filterServicos = servicos.filter(
+        (item) =>
+         item.valueTotalByService !== undefined 
+      );
+
+      setByService(filterServicos);
     }
-    getService()
-  }, [])
+    getService();
+  }, []);
 
+  const data = {
+    labels: byService.map( (item) => item.dataTracker),
+    datasets: [
+      {
+        data: byService.map((item) => item.valueTotalByService),
+      },
+    ],
+  };
 
-    return (
-      <VStack flex={1}>
-        <BarChart
-          data={{
-            labels: ["2023/08", "2023/09", "2023/09", "2023/10"],
-            datasets: [
-              {
-                data: byService.map((item) => item.valueTotalByService),
-              },
-            ],
-          }}
-          width={Dimensions.get("window").width} 
-          height={220}
-          yAxisLabel="$"
-          yAxisSuffix="R"
-          yAxisInterval={1} 
-          chartConfig={{
-            backgroundColor: "#fff",
-            backgroundGradientFrom: "#fff",
-            backgroundGradientTo: "#ffff",
-            decimalPlaces: 2, 
-            color: () => `#198EB6`,
-            labelColor: () => `#0f4a5e`,
-            style: {
-              borderRadius: 16,
-            },
-            propsForDots: {
-              r: "6",
-              strokeWidth: "2",
-              stroke: "#ffa726",
-            },
-          }}
-       
-          style={{
-            marginVertical: 8,
-            borderRadius: 16,
-          }}
+ 
+  return (
+    <ScrollView bgColor={"#fff"}>
+      <Header />
+      <CustomChart Chart={BarChart} byService={byService} data={data} />
+      {byService.map((item) => (
+        <Card
+          key={item.id}
+          data={item.dataTracker}
+          money={item.valueTotalByService}
+          typeService={item.typeService}
         />
-
-      </VStack>
-    );
-}
+      ))}
+    </ScrollView>
+  );
+};

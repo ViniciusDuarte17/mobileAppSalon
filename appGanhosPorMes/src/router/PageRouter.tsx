@@ -6,12 +6,11 @@ const Tab = createNativeStackNavigator();
 
 import { Login } from "../pages/Login" 
 import { Signup } from "../pages/Signup" 
-import { Home } from "../Tabs/Home";
 import Tabs from "../Tabs";
 
 export default function PageRouter(){
   return (
-    <NavigationContainer>
+    <NavigationContainer >
       <Tab.Navigator>
         <Tab.Screen
           name="Login"
