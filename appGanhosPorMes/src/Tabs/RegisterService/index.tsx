@@ -1,5 +1,5 @@
 import React from "react";
-import {Text, VStack, Center, Image, ScrollView, Divider} from "native-base"
+import { VStack, Image} from "native-base"
 import { Title } from "../../componentes/Title";
 import { section } from "../../utils/section";
 import { CustomImput } from "../../componentes/CustomInput";
