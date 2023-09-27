@@ -1,16 +1,54 @@
 import { Avatar, VStack } from "native-base";
-import React from "react";
+import { TouchableOpacity } from "react-native"
+import React, {useEffect, useState} from "react";
 import { Title } from "./Title";
+import * as ImagePicker from 'expo-image-picker';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const Header: React.FC = () => {
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    async function pegarImageLocal() {
+      if (image == null) {
+        const img = await AsyncStorage.getItem("img");
+        if (img) {
+          setImage(img);
+        }
+      }
+    }
+    pegarImageLocal();
+  }, []);
+
+  const pickImage = async () => {
+    
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+      AsyncStorage.setItem('img', result.assets[0].uri )
+    }
+  };
+ 
+
   return (
     <VStack p={2} flexDir={"row"}>
-      <Avatar
-        size="xl"
-        source={{
-          uri: "https://instagram.fpnz7-1.fna.fbcdn.net/v/t51.2885-19/379790396_1540939723312725_6393431937156555465_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fpnz7-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=78z8D8AVyt0AX-r3G6X&edm=AId3EpQBAAAA&ccb=7-5&oh=00_AfAJco-6tM5MV2XUPN2ErfhaxAEf5_xZWeoGu-KOLwF-SA&oe=65173E3D&_nc_sid=f5838a",
-        }}
-      />
+      <TouchableOpacity
+        onPress={pickImage}
+      >
+        <Avatar
+          size="xl"
+          source={{
+            uri: image,
+          }}
+       
+        />
+      </TouchableOpacity>
       <Title alignSelf={"center"} marginLeft={3}>
         Caila Rocha
       </Title>
