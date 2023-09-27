@@ -14,7 +14,7 @@ import { section } from "../../utils/section";
         </Title>
 
         <VStack flex={1} mt={8}>
-          {section.map((list) => (
+          {section.cadastro.map((list) => (
             <CustomImput
               key={list.id}
               placeholder={list.placeholder}
