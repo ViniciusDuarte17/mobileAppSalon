@@ -19,8 +19,8 @@ export const RegisterService = () => {
             w={100}
             h={75}
             source={require("../../assets/financeiro.jpg")}
+            alt="Logo do financeiro"
           />
-          {/* <Divider mt={"3%"} /> */}
 
         <VStack flex={1} p={4} justifyContent={'center'} >
           {section.registerService.map((list) => (
