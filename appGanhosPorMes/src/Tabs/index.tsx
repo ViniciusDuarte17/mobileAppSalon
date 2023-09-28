@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { Home } from "./Home";
-import { Scheduling } from "./Scheduling";
+import { Profile } from "./Profile";
 import { RegisterService } from "./RegisterService";
 
 const Tab = createBottomTabNavigator()
@@ -21,14 +21,14 @@ const tabs = [
     icon: 'home'
   },
   {
-    name: 'Agendamento',
-    component: Scheduling,
-    icon: 'calendar'
-  },
-  {
     name: 'RegistrarServico',
     component: RegisterService,
     icon: 'ios-book'
+  },
+  {
+    name: 'profile',
+    component: Profile,
+    icon: 'person'
   },
 ]
 

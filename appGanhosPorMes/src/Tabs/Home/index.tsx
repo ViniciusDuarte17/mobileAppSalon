@@ -36,7 +36,7 @@ export const Home:React.FC = () => {
  
   return (
     <ScrollView bgColor={"#fff"}>
-      <Header />
+      <Header name="Caila Rocha" />
       <CustomChart Chart={BarChart} byService={byService} data={data} />
       {byService.map((item) => (
         <Card

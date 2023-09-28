@@ -5,7 +5,11 @@ import { Title } from "./Title";
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const Header: React.FC = () => {
+interface PropsHeader {
+  name: string;
+}
+
+export const Header: React.FC<PropsHeader> = ({name}) => {
   const [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -38,19 +42,16 @@ export const Header: React.FC = () => {
 
   return (
     <VStack p={2} flexDir={"row"}>
-      <TouchableOpacity
-        onPress={pickImage}
-      >
+      <TouchableOpacity onPress={pickImage}>
         <Avatar
           size="xl"
           source={{
             uri: image,
           }}
-       
         />
       </TouchableOpacity>
       <Title alignSelf={"center"} marginLeft={3}>
-        Caila Rocha
+        {name}
       </Title>
     </VStack>
   );
