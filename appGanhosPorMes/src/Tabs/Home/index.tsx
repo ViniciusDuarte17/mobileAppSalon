@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView } from "native-base";
+import { VStack } from "native-base";
 import { servicos } from "../../utils/api";
-import { BarChart } from "react-native-chart-kit";
-import { CustomChart } from "../../componentes/CustomChart";
 import { ItypeService } from "../../interface/iTypeService";
-import { Header } from "../../componentes/Header";
 import { Card } from "../../componentes/Card";
 import { agruparAcumularPorData } from "../../utils/agrupaAcumularPorData";
+import { FlatList } from "react-native";
+import { HeaderHome } from "../components";
 
 
 export const Home:React.FC = () => {
@@ -28,28 +27,17 @@ export const Home:React.FC = () => {
     getService();
   }, []);
 
-const result = agruparAcumularPorData(byService);
-
-  const data = {
-    labels: result.map( (item) => item.dataTracker),
-    datasets: [
-      {
-        data: result.map((item) => item.valueTotalByService),
-      },
-    ],
-  };
+ const result: ItypeService[] = agruparAcumularPorData(byService);
  
   return (
-    <ScrollView bgColor={"#fff"}>
-      <Header name="Caila Rocha" />
-      <CustomChart Chart={BarChart} byService={byService} data={data} />
-      {result.map((item) => (
-        <Card
-          key={item.id}
-          data={item.dataTracker}
-          money={item.valueTotalByService}
-        />
-      ))}
-    </ScrollView>
+    <VStack flex={1} bgColor={"#fff"} >
+      <FlatList
+        data={result}
+        renderItem={({ item }) => <Card {...item} userName={false} />}
+        keyExtractor={(item) => item.id}
+        ListHeaderComponent={() => <HeaderHome />}
+      />
+      
+    </VStack>
   );
 };

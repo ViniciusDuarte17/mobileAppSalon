@@ -39,7 +39,6 @@ export const Header: React.FC<PropsHeader> = ({name}) => {
     }
   };
  
-
   return (
     <VStack p={2} flexDir={"row"}>
       <TouchableOpacity onPress={pickImage}>

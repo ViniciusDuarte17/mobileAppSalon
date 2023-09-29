@@ -5,4 +5,5 @@ export interface ItypeService {
     amount: number;
     dataTracker: string;
     valueTotalByService?: number;
+    userName?: boolean;
 }
