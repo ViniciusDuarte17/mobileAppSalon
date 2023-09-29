@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface PropsHeader {
-  name: string;
+  name?: string;
 }
 
 export const Header: React.FC<PropsHeader> = ({name}) => {

@@ -14,7 +14,7 @@ export const TEMAS = extendTheme({
   },
   fontSizes: {
     xs: 12,
-    sm: 14,
+    sm: 16,
     md: 18,
     lg: 20,
     xl: 26
