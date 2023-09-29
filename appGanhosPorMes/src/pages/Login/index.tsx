@@ -1,13 +1,49 @@
-import React from "react";
-import {  VStack, Text, Input } from "native-base"
+import React, { useState } from "react";
+import {  VStack, Text, useToast } from "native-base"
 import { Title } from "../../componentes/Title";
 import { CustomImput } from "../../componentes/CustomInput";
 import { CustomButton } from "../../componentes/CustomButton";
 import {  NavigationProps } from "../../@types/navigation";
 import { section } from "../../utils/section";
+import { login } from "../../services/authen";
+import { IUser } from "../../interface/user";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import jwtDecode from "jwt-decode";
 
  export const Login: React.FC = ({navigation}: NavigationProps<'Cadastro'>) => {
+  const [data, setData] = useState({} as IUser);
+  const toast = useToast()
 
+  function updateData (id: string, valor: string) {
+    setData({...data, [id]: valor})
+  }
+  const submitLogin = async () => {
+    const result = await login(data);
+
+    if (result) {
+      const { token } = result;
+      if (token !== undefined) {
+        AsyncStorage.setItem("token", token);
+        const tokenDecodificado = jwtDecode(token) as any;
+        const userId = tokenDecodificado.id;
+        AsyncStorage.setItem("userId", userId);
+
+        return navigation.replace("Tabs");
+      } else {
+        toast.show({
+          title: "Erro no login",
+          description: "O email ou senha não conferem",
+          backgroundColor: "red.500",
+        });
+      }
+    } else {
+      toast.show({
+        title: "Erro no login",
+        description: "O email ou senha não conferem",
+        backgroundColor: "red.500",
+      });
+    }
+  };
     return (
       <VStack bgColor={"white"} flex={1} p={5}>
         <Title color={"blue.800"} position="center">
@@ -33,11 +69,11 @@ import { section } from "../../utils/section";
               placeholder={list.placeholder}
               label={list.label}
               secureTextEntry={list.secureTextEntry}
+              value={data[list.name]}
+              onChangeText={(text) => updateData(list.name, text)}
             />
           ))}
-          <CustomButton onPress={() => navigation.replace("Tabs")}>
-            Login
-          </CustomButton>
+          <CustomButton onPress={submitLogin}>Login</CustomButton>
         </VStack>
         <CustomButton color="#ffff">
           <Text
