@@ -3,13 +3,21 @@ import { Center, Divider, Text, VStack } from "native-base";
 import { Title } from "../../../componentes/Title";
 import { CustomButton } from "../../../componentes/CustomButton";
 import { Header } from "../../../componentes/Header";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface ProfileProps {
     name: string;
     email: string;
+    navigation: any
 }
 
-export const HeaderProfile: React.FC<ProfileProps> = ({name, email}) => {
+export const HeaderProfile: React.FC<ProfileProps> = ({name, email, navigation}) => {
+
+  const sair = () => {
+    AsyncStorage.removeItem("token");
+    AsyncStorage.removeItem("pacienteId");
+    navigation.replace("Login");
+  };
 
   return (
     <VStack flex={1} bgColor={"white"}>
@@ -32,7 +40,11 @@ export const HeaderProfile: React.FC<ProfileProps> = ({name, email}) => {
           {email}
         </Text>
 
-        <CustomButton w={"25%"}>Sair</CustomButton>
+        <CustomButton
+         onPress={sair}
+         w={"25%"}>
+          Sair
+        </CustomButton>
       </Center>
       <Divider mt={6} />
       <Center mt={3}>

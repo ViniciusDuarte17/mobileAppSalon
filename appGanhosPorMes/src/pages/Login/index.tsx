@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {  VStack, Text, useToast } from "native-base"
 import { Title } from "../../componentes/Title";
 import { CustomImput } from "../../componentes/CustomInput";
@@ -9,14 +9,18 @@ import { login } from "../../services/authen";
 import { IUser } from "../../interface/user";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import jwtDecode from "jwt-decode";
+import { useProtectedPage } from "../../hooks/useProtectedPage";
 
  export const Login: React.FC = ({navigation}: NavigationProps<'Cadastro'>) => {
   const [data, setData] = useState({} as IUser);
-  const toast = useToast()
+  const [carregando, setCarregando] = useState(true)
+  useProtectedPage({navigation, setCarregando})
+  const toast = useToast();
 
   function updateData (id: string, valor: string) {
     setData({...data, [id]: valor})
-  }
+  };
+
   const submitLogin = async () => {
     const result = await login(data);
 
@@ -39,11 +43,15 @@ import jwtDecode from "jwt-decode";
     } else {
       toast.show({
         title: "Erro no login",
-        description: "O email ou senha não conferem",
+        description: "É necessário preencher todas os campos",
         backgroundColor: "red.500",
       });
     }
   };
+
+  if (carregando) {
+    return null;
+  }
     return (
       <VStack bgColor={"white"} flex={1} p={5}>
         <Title color={"blue.800"} position="center">

@@ -6,8 +6,9 @@ import { servicos } from "../../utils/api";
 import { Card } from "../../componentes/Card";
 import { FlatList } from "react-native";
 import { HeaderProfile } from "./components/HeaderProfile";
+import { NavigationProps } from "../../@types/navigation";
 
-export const Profile: React.FC = () => {
+export const Profile: React.FC = ({navigation}: NavigationProps<'Tabs'>) => {
   const [byService, setByService] = useState<ItypeService[]>([]);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export const Profile: React.FC = () => {
         renderItem={({ item }) => <Card {...item} userName={false} />}
         keyExtractor={(item) => item.id}
         ListHeaderComponent={() => (
-          <HeaderProfile name="Caila Rocha" email="caila@rocha.com" />
+          <HeaderProfile name="Caila Rocha" email="caila@rocha.com" navigation={navigation}/>
         )}
       />
       <Center pb={7}>

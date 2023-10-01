@@ -9,6 +9,7 @@ export type ListaTelas = {
 }
 
 export type NavigationProps< T extends keyof ListaTelas > = {
+  replace(arg0: string): unknown;
   navigation: NativeStackNavigationProp<ListaTelas, T>;
   route: RouteProp<ListaTelas, T>
 }
