@@ -8,7 +8,7 @@ export const login = async (data: IUser) => {
   try {
     const result = await axios.post(`${api}/cliente/login`, {
       email: data.email,
-      password: data.password ,
+      password: data.password,
     });
 
     return result.data;
@@ -16,4 +16,3 @@ export const login = async (data: IUser) => {
     return error;
   }
 };
-
