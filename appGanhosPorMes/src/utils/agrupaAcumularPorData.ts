@@ -3,7 +3,7 @@ import { ItypeService } from "../interface/iTypeService";
 export function agruparAcumularPorData(dados: ItypeService[]) {
   const mapaPorData = new Map();
 
-  dados.forEach((item) => {
+   dados.forEach((item) => {
     const data = item.dataTracker;
     const valorTotal = item.valueTotalByService;
 
@@ -16,6 +16,8 @@ export function agruparAcumularPorData(dados: ItypeService[]) {
   });
 
   const resultado = Array.from(mapaPorData.values());
+
+  console.log("resultado", resultado)
 
   return resultado;
 }

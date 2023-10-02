@@ -3,13 +3,9 @@ import React from "react";
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { ItypeService } from "../interface/iTypeService";
 
-export interface CardProps {
-    typeService?: string
-    data?: string
-    money?: number
-}
 
 export const Card: React.FC<ItypeService> = ({typeService, valueTotalByService, dataTracker, userName }) => {
+  
   return (
     <VStack shadow={3} alignSelf={'center'} borderRadius={8} bg={"white"} w={'95%'} height={74} mb={3}>
       <VStack

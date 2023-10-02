@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { VStack } from "native-base";
-import { servicos } from "../../utils/api";
 import { ItypeService } from "../../interface/iTypeService";
 import { Card } from "../../componentes/Card";
-import { agruparAcumularPorData } from "../../utils/agrupaAcumularPorData";
 import { FlatList } from "react-native";
 import { HeaderHome } from "../components";
 import { isValidToken } from "../../hooks/isValidToken";
 import { NavigationProps } from "../../@types/navigation";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { listservice } from "../../services/listService";
+import { IProfile } from "../../interface/user"
+import { profileService } from "../../services/profile";
 
 
 export const Home:React.FC = ({navigation}:NavigationProps<'Login'>) => {
   const [byService, setByService] = useState<ItypeService[]>([]);
+  const [profile, setProfile] = useState({} as IProfile)
+
+  async function getProfile(){
+    setProfile(await profileService())
+  }
+
+  async function dataService(){
+    setByService(await listservice())
+  }
 
   useEffect( () => {
     const checkToken = async () => {
@@ -23,39 +33,21 @@ export const Home:React.FC = ({navigation}:NavigationProps<'Login'>) => {
         navigation.replace("Login");
       }
     };
-
+    getProfile()
+    dataService()
     checkToken()
     const tokenCheckInterval = setInterval(checkToken, 60 * 60 * 1000);
     return () => clearInterval(tokenCheckInterval);
   }, [navigation])
 
-  useEffect(() => {
-    function getService() {
-      servicos.forEach((item) => {
-        const data = new Date(item.dataTracker);
-        const ano = data.getFullYear();
-        const mes = data.getMonth() + 1;
-        const newMes = mes < 10 ? `0${mes}` : mes;
-        item.dataTracker = newMes + "/" + ano;
 
-        if (item.dataTracker === item.dataTracker) {
-        }
-      });
-      
-      setByService(servicos);
-    }
-    getService();
-  }, []);
-
- const result: ItypeService[] = agruparAcumularPorData(byService);
- 
   return (
     <VStack flex={1} bgColor={"#fff"}>
       <FlatList
-        data={result}
+        data={byService}
         renderItem={({ item }) => <Card {...item} userName={false} />}
         keyExtractor={(item) => item.id}
-        ListHeaderComponent={() => <HeaderHome />}
+        ListHeaderComponent={() => <HeaderHome byService={byService} profile={profile} />}
       />
     </VStack>
   );

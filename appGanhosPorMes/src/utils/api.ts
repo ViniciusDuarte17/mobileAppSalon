@@ -1,5 +1,21 @@
 export const servicos = [
   {
+    id: "11dc9cf2-ded3-45f6-9995-521782bc79a6",
+    typeService: "corte completo",
+    valueService: 30,
+    amount: 4,
+    dataTracker: "2023-10-01T16:13:18.000Z",
+    valueTotalByService: 120,
+  },
+  {
+    id: "49d210d8-af8a-4860-9457-7d6d26144db0",
+    typeService: "buço",
+    valueService: 10,
+    amount: 2,
+    dataTracker: "2023-09-29T08:52:23.000Z",
+    valueTotalByService: 20,
+  },
+  {
     id: "5f806fb8-e1c3-4c61-9c28-1a3f5388e3be",
     typeService: "corte completo",
     valueService: 30,
@@ -64,3 +80,21 @@ export const servicos = [
   //   valueTotalByService: 20,
   // },
 ];
+ const test = [
+   {
+     amount: 4,
+     dataTracker: "10/2023",
+     id: "11dc9cf2-ded3-45f6-9995-521782bc79a6",
+     typeService: "corte completo",
+     valueService: 30,
+     valueTotalByService: 120,
+   },
+   {
+     amount: 2,
+     dataTracker: "09/2023",
+     id: "49d210d8-af8a-4860-9457-7d6d26144db0",
+     typeService: "buço",
+     valueService: 10,
+     valueTotalByService: 230,
+   },
+ ];

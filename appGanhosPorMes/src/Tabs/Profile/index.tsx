@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {  Center, VStack } from "native-base"
+import { Center, VStack } from "native-base"
 import { Title } from "../../componentes/Title";
 import { ItypeService } from "../../interface/iTypeService";
 import { servicos } from "../../utils/api";
@@ -25,7 +25,7 @@ export const Profile: React.FC = ({navigation}: NavigationProps<'Tabs'>) => {
     <VStack flex={1} bgColor={"white"}>
       <FlatList
         data={byService}
-        renderItem={({ item }) => <Card {...item} userName={false} />}
+        renderItem={({ item }) => <Card {...item} userName={true} />}
         keyExtractor={(item) => item.id}
         ListHeaderComponent={() => (
           <HeaderProfile name="Caila Rocha" email="caila@rocha.com" navigation={navigation}/>
