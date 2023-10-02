@@ -7,7 +7,7 @@ import { HeaderHome } from "../components";
 import { isValidToken } from "../../hooks/isValidToken";
 import { NavigationProps } from "../../@types/navigation";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { listservice } from "../../services/listService";
+import { listserviceMes } from "../../services/listService";
 import { IProfile } from "../../interface/user"
 import { profileService } from "../../services/profile";
 
@@ -21,7 +21,7 @@ export const Home:React.FC = ({navigation}:NavigationProps<'Login'>) => {
   }
 
   async function dataService(){
-    setByService(await listservice())
+    setByService(await listserviceMes())
   }
 
   useEffect( () => {

@@ -17,7 +17,7 @@ export function agruparAcumularPorData(dados: ItypeService[]) {
 
   const resultado = Array.from(mapaPorData.values());
 
-  console.log("resultado", resultado)
+  // console.log("resultado", resultado)
 
   return resultado;
 }
