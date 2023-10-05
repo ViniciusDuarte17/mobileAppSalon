@@ -10,7 +10,7 @@ import { IUser } from "../../interface/user";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import jwtDecode from "jwt-decode";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { GlobalStateContext } from "../../context/GlobalStateContext";
+
 
  export const Login: React.FC = ({navigation}: NavigationProps<'Cadastro'>) => {
   const [data, setData] = useState({} as IUser);
