@@ -1,32 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Center, VStack } from "native-base"
 import { Title } from "../../componentes/Title";
-import { ItypeService } from "../../interface/iTypeService";
-import { servicos } from "../../utils/api";
 import { Card } from "../../componentes/Card";
 import { FlatList } from "react-native";
 import { HeaderProfile } from "./components/HeaderProfile";
 import { NavigationProps } from "../../@types/navigation";
-import { IProfile } from "../../interface/user";
-import { profileService } from "../../services/profile";
-import { listservice } from "../../services/listService";
+import { GlobalStateContext } from "../../context/GlobalStateContext";
 
 export const Profile: React.FC = ({navigation}: NavigationProps<'Tabs'>) => {
-  const [byService, setByService] = useState<ItypeService[]>([]);
-  const [profile, setProfile] = useState({} as IProfile)
+  const { profile, byService, listService, getProfile, counter } = useContext(GlobalStateContext);
 
-  async function getProfile(){
-    setProfile(await profileService())
-  }
-  async function listService(){
-    setByService(await listservice())
-  }
-
-  useEffect(() => {
-    listService()
-    getProfile();
-  }, []);
-
+ useEffect(() => {
+   listService();
+   getProfile();
+ }, [counter]);
+  
   let valorTotal = 0;
 
   byService.forEach((value) => {

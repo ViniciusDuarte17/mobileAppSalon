@@ -1,30 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { VStack } from "native-base";
-import { ItypeService } from "../../interface/iTypeService";
 import { Card } from "../../componentes/Card";
 import { FlatList } from "react-native";
 import { HeaderHome } from "../components";
 import { isValidToken } from "../../hooks/isValidToken";
 import { NavigationProps } from "../../@types/navigation";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { listserviceMes } from "../../services/listService";
-import { IProfile } from "../../interface/user"
-import { profileService } from "../../services/profile";
+import { GlobalStateContext } from "../../context/GlobalStateContext";
 
 
 export const Home:React.FC = ({navigation}:NavigationProps<'Login'>) => {
-  const [byService, setByService] = useState<ItypeService[]>([]);
-  const [profile, setProfile] = useState({} as IProfile)
+  const { byServiceMes, dataService, counter } = useContext(GlobalStateContext);
 
-  async function getProfile(){
-    setProfile(await profileService())
-  }
-
-  async function dataService(){
-    setByService(await listserviceMes())
-  }
-
-  useEffect( () => {
+  useEffect(() => {
+    dataService()
     const checkToken = async () => {
       const tokenExpirado = await isValidToken();
       if (tokenExpirado) {
@@ -33,21 +22,19 @@ export const Home:React.FC = ({navigation}:NavigationProps<'Login'>) => {
         navigation.replace("Login");
       }
     };
-    getProfile()
-    dataService()
-    checkToken()
+  
+    checkToken();
     const tokenCheckInterval = setInterval(checkToken, 60 * 60 * 1000);
     return () => clearInterval(tokenCheckInterval);
-  }, [navigation])
-
+  }, [navigation, counter]);
 
   return (
     <VStack flex={1} bgColor={"#fff"}>
       <FlatList
-        data={byService}
+        data={byServiceMes}
         renderItem={({ item }) => <Card {...item} userName={false} />}
         keyExtractor={(item) => item.id}
-        ListHeaderComponent={() => <HeaderHome byService={byService} profile={profile} />}
+        ListHeaderComponent={() => <HeaderHome />}
       />
     </VStack>
   );

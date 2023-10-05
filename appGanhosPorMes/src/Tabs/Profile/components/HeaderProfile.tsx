@@ -6,9 +6,9 @@ import { Header } from "../../../componentes/Header";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface ProfileProps {
-    name: string;
-    email: string;
-    navigation: any
+  name: string;
+  email: string;
+  navigation: any;
 }
 
 export const HeaderProfile: React.FC<ProfileProps> = ({name, email, navigation}) => {
@@ -40,9 +40,7 @@ export const HeaderProfile: React.FC<ProfileProps> = ({name, email, navigation})
           {email}
         </Text>
 
-        <CustomButton
-         onPress={sair}
-         w={"25%"}>
+        <CustomButton onPress={sair} w={"25%"}>
           Sair
         </CustomButton>
       </Center>
