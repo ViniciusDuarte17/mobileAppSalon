@@ -56,7 +56,7 @@ import { useProtectedPage } from "../../hooks/useProtectedPage";
     return (
       <VStack bgColor={"white"} flex={1} p={5}>
         <Title color={"blue.800"} position="center">
-          Seja bem vindo
+          Seja bem-vindo(a)!
         </Title>
 
         <Title>Login</Title>

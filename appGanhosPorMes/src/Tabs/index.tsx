@@ -21,12 +21,12 @@ const tabs = [
     icon: 'home'
   },
   {
-    name: 'RegistrarServico',
+    name: 'Serviços',
     component: RegisterService,
     icon: 'ios-book'
   },
   {
-    name: 'profile',
+    name: 'Perfil',
     component: Profile,
     icon: 'person'
   },

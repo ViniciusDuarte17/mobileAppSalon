@@ -49,7 +49,7 @@ export const Header: React.FC<PropsHeader> = ({name}) => {
           }}
         />
       </TouchableOpacity>
-      <Title alignSelf={"center"} marginLeft={3}>
+      <Title color="gray.500" alignSelf={"center"} marginLeft={3}>
         {name}
       </Title>
     </VStack>
