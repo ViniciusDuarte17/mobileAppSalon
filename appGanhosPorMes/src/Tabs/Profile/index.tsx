@@ -19,7 +19,7 @@ export const Profile: React.FC = ({navigation}: NavigationProps<'Tabs'>) => {
 
   return (
     <VStack flex={1} bgColor={"white"}>
-      {Object.keys(profile).length ? (
+      {Object.keys(profile).length > 0 ? (
         <FlatList
           data={byService}
           renderItem={({ item }) => <Card {...item} userName={true} />}

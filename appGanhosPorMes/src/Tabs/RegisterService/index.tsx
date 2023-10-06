@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { VStack, Image, useToast} from "native-base"
+import { VStack, Image, useToast } from "native-base"
 import { Title } from "../../componentes/Title";
 import { section } from "../../utils/section";
 import { CustomImput } from "../../componentes/CustomInput";
@@ -27,6 +27,7 @@ export const RegisterService = () => {
     const result: Imessage = await insertService(data);
  
     if (result) {
+      
       toast.show({
         title: "Sucesso",
         description: `${result.message}`,
@@ -81,6 +82,7 @@ export const RegisterService = () => {
             Registrar
           </CustomButton>
         </VStack>
+        
       </VStack>
     );
 }

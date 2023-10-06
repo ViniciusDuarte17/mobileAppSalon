@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { VStack } from "native-base";
 import { Card } from "../../componentes/Card";
 import { FlatList } from "react-native";
@@ -33,12 +33,14 @@ export const Home:React.FC = ({navigation}:NavigationProps<'Login'>) => {
 
   return (
     <VStack flex={1} bgColor={"#fff"}>
-      {Object.keys(profile).length ? (
+      {Object.keys(profile).length > 0 ? (
         <FlatList
           data={byServiceMes}
           renderItem={({ item }) => <Card {...item} userName={false} />}
           keyExtractor={(item) => item.id}
-          ListHeaderComponent={() => <HeaderHome />}
+          ListHeaderComponent={() => (
+            <HeaderHome byServiceMes={byServiceMes} profile={profile} />
+          )}
         />
       ) : (
         <CustomSkeleton />

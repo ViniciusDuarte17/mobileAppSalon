@@ -1,13 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Header } from "../../componentes/Header";
 import { VStack } from "native-base";
 import { CustomChart } from "../../componentes/CustomChart";
 import { BarChart } from "react-native-chart-kit";
-import { GlobalStateContext } from "../../context/GlobalStateContext";
+import { ItypeService } from "../../interface/iTypeService";
+import { IProfile } from "../../interface/user";
 
+interface PropsHeaderHome {
+  byServiceMes: ItypeService[];
+  profile: IProfile;
+}
 
-export const HeaderHome: React.FC = (  ) => {
-  const { profile, byServiceMes } = useContext(GlobalStateContext);
+export const HeaderHome: React.FC<PropsHeaderHome> = ( {byServiceMes, profile } ) => {
 
   const data = {
     labels: byServiceMes.map((item) => item.dataTracker),
@@ -21,7 +25,9 @@ export const HeaderHome: React.FC = (  ) => {
   return (
     <VStack flexDir={"column"}>
       <Header name={profile.name} />
-      <CustomChart Chart={BarChart} byService={byServiceMes} data={data} />
+      {Object.keys(profile).length > 0 ? (
+        <CustomChart Chart={BarChart} byService={byServiceMes} data={data} />
+      ) : null}
     </VStack>
   );
 };

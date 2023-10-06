@@ -10,11 +10,13 @@ import { IUser } from "../../interface/user";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import jwtDecode from "jwt-decode";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
+import { MySpinner } from "../../componentes/Spinner";
 
 
  export const Login: React.FC = ({navigation}: NavigationProps<'Cadastro'>) => {
   const [data, setData] = useState({} as IUser);
   const [carregando, setCarregando] = useState(true)
+  const [loading, setLoading] = useState(false)
   useProtectedPage({navigation, setCarregando})
   const toast = useToast();
 
@@ -23,6 +25,7 @@ import { useProtectedPage } from "../../hooks/useProtectedPage";
   };
 
   const submitLogin = async () => {
+    setLoading(true)
     const result = await login(data);
 
     if (result) {
@@ -48,6 +51,7 @@ import { useProtectedPage } from "../../hooks/useProtectedPage";
         backgroundColor: "red.500",
       });
     }
+    setLoading(false)
   };
 
   if (carregando) {
@@ -82,7 +86,11 @@ import { useProtectedPage } from "../../hooks/useProtectedPage";
               onChangeText={(text) => updateData(list.name, text)}
             />
           ))}
-          <CustomButton onPress={submitLogin}>Login</CustomButton>
+          <CustomButton onPress={submitLogin}>
+            {
+              !loading ? "Login": <MySpinner />
+            }
+          </CustomButton>
         </VStack>
         <CustomButton color="#ffff">
           <Text

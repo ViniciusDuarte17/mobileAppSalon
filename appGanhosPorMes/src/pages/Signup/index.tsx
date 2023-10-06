@@ -9,16 +9,19 @@ import { sigunp } from "../../services/authen";
 import jwtDecode from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationProps } from "../../@types/navigation";
+import { MySpinner } from "../../componentes/Spinner";
 
  export const Signup: React.FC = ({navigation}: NavigationProps<'Cadastro'>) => {
   const toast = useToast();
   const [data, setData] = useState({} as ISignup);
+  const [loading, setLoading] = useState(false);
 
   function updateData (id: string, valor: string) {
     setData({...data, [id]: valor})
   };
 
   const submitSigunp = async () => {
+    setLoading(true)
     const result = await sigunp(data)
     if (result) {
       const { token } = result;
@@ -43,7 +46,7 @@ import { NavigationProps } from "../../@types/navigation";
         backgroundColor: "red.500",
       });
     }
-  
+    setLoading(false)
   };
 
     return (
@@ -60,10 +63,12 @@ import { NavigationProps } from "../../@types/navigation";
               label={list.label}
               secureTextEntry={list.secureTextEntry}
               value={data[list.name]}
-              onChangeText={ (text) => updateData(list.name, text)}
+              onChangeText={(text) => updateData(list.name, text)}
             />
           ))}
-          <CustomButton onPress={submitSigunp}>Cadastrar</CustomButton>
+          <CustomButton onPress={submitSigunp}>
+            {!loading ? "Cadastrar" : <MySpinner />}
+          </CustomButton>
         </VStack>
       </VStack>
     );

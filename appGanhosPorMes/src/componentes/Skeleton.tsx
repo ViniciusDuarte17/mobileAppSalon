@@ -3,7 +3,7 @@ import { Center, Skeleton, VStack } from "native-base";
 
 export const CustomSkeleton = () => {
   return (
-    <Center w="100%" pt={5}>
+    <Center alignSelf={'center'} w="90%" pt={5}>
       <VStack
         w="100%"
         maxW="400"
