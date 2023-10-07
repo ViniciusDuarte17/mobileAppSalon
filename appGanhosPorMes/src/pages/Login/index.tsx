@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import {  VStack, Text, useToast } from "native-base"
+import React, { useState } from "react";
+import { VStack, Text, useToast } from "native-base"
 import { Title } from "../../componentes/Title";
 import { CustomImput } from "../../componentes/CustomInput";
 import { CustomButton } from "../../componentes/CustomButton";
