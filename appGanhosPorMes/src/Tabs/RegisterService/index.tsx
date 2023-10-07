@@ -7,13 +7,12 @@ import { CustomButton } from "../../componentes/CustomButton";
 import { Imessage, inputService } from "../../interface/iTypeService";
 import { insertService } from "../../services/listService";
 import { GlobalStateContext } from "../../context/GlobalStateContext";
-import { BarProgress } from "../../componentes/Progress";
+import { MySpinner } from "../../componentes/Spinner";
 
 
 export const RegisterService = () => {
   const {counter, setCaunter } = useContext(GlobalStateContext);
   const [data, setData] = useState({} as inputService);
-  const [progress, setProgress] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const toast = useToast();
 
@@ -23,11 +22,9 @@ export const RegisterService = () => {
 
   useEffect(() => {
     setCaunter(counter)
-    
   }, [])
 
   async function submitService() {
-    setProgress(87)
     setLoading(true)
     const result: Imessage = await insertService(data);
 
@@ -84,11 +81,9 @@ export const RegisterService = () => {
               onChangeText={(text) => updateData(list.name, text)}
             />
           ))}
-          {!loading ? (
-            <CustomButton onPress={submitService}>Registrar</CustomButton>
-          ) : (
-            <BarProgress value={ progress} />
-          )}
+          <CustomButton onPress={submitService}>
+            {!loading ? "Registrar" : <MySpinner />}
+          </CustomButton>
         </VStack>
       </VStack>
     );
