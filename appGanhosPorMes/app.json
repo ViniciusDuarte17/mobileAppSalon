@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "voll-mobile",
-    "slug": "voll-mobile",
+    "name": "app-ganhos-mensais",
+    "slug": "app-ganhos-mensais",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/splash.png",
     "userInterfaceStyle": "light",
     "plugins":[
       [
@@ -27,7 +27,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/splash.png",
         "backgroundColor": "#ffffff"
       }
     },

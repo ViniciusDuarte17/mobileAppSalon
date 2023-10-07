@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useEffect } from "react";
+import React, { ReactNode, useState } from "react";
 import { IProfile } from "../interface/user";
 import { profileService } from "../services/profile";
 import { ItypeService } from "../interface/iTypeService";

@@ -3,7 +3,6 @@ import React from "react";
 import { Dimensions } from "react-native";
 import { ItypeService } from "../interface/iTypeService";
 import { Title } from "./Title";
-import Ionicons from 'react-native-vector-icons/Ionicons'
 
 interface ChartProps {
   Chart: any;

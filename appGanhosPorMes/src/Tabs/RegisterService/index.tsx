@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { VStack, Image, useToast } from "native-base"
+import { VStack, Image, useToast, Center } from "native-base"
 import { Title } from "../../componentes/Title";
 import { section } from "../../utils/section";
 import { CustomImput } from "../../componentes/CustomInput";
@@ -62,15 +62,13 @@ export const RegisterService = () => {
         <Title p={3} color={"blue.800"} position="center">
           Área de registro de serviços
         </Title>
-        <Image
-          marginTop={7}
-          alignSelf={"center"}
-          w={100}
-          h={75}
-          source={require("../../assets/financeiro.jpg")}
-          alt="Logo do financeiro"
-        />
-
+        <Center >
+          <Image
+            source={require("../../../assets/splash.png")}
+            alt="Logo do financeiro"
+            size="xl"
+          />
+        </Center>
         <VStack flex={1} p={4} justifyContent={"center"}>
           {section.registerService.map((list) => (
             <CustomImput
