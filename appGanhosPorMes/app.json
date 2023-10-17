@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/splash.png",
     "userInterfaceStyle": "light",
-    "plugins":[
+    "plugins": [
       [
         "expo-image-picker",
         {
@@ -29,10 +29,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/splash.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.vinicius_duarte14.appganhosmensais"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "08963898-3040-4b8e-acf0-2f27c980533d"
+      }
     }
   }
 }

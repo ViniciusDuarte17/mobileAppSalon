@@ -12,7 +12,7 @@ import { CustomSkeleton } from "../../componentes/Skeleton";
 
 export const Home:React.FC = ({navigation}:NavigationProps<'Login'>) => {
   const { byServiceMes, counter, profile, dataService, getProfile, listService } = useContext(GlobalStateContext);
-
+  
   useEffect(() => {
     dataService();
     getProfile();

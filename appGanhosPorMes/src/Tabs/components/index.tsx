@@ -14,10 +14,10 @@ interface PropsHeaderHome {
 export const HeaderHome: React.FC<PropsHeaderHome> = ( {byServiceMes, profile } ) => {
 
   const data = {
-    labels: byServiceMes.map((item) => item.dataTracker),
+    labels: byServiceMes.length > 0 && byServiceMes.map((item) => item.dataTracker),
     datasets: [
       {
-        data: byServiceMes.map((item) => item.valueTotalByService),
+        data: byServiceMes.length > 0 && byServiceMes.map((item) => item.valueTotalByService),
       },
     ],
   };
