@@ -1,17 +1,17 @@
 import { Avatar, VStack } from "native-base";
 import { TouchableOpacity } from "react-native"
-import React, {useEffect, useState} from "react";
+import React, { useContext, useEffect } from "react";
 import { Title } from "./Title";
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { GlobalStateContext } from "../context/GlobalStateContext";
 
 interface PropsHeader {
   name?: string;
 }
 
 export const Header: React.FC<PropsHeader> = ({name}) => {
-  const [image, setImage] = useState(null);
-
+  const { image, setImage } = useContext(GlobalStateContext);
   useEffect(() => {
     async function pegarImageLocal() {
       if (image == null) {

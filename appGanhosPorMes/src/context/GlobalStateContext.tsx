@@ -10,10 +10,12 @@ interface propsGlobal {
   byServiceMes: ItypeService[];
   byService: ItypeService[];
   counter: number;
+  image: string;
   setCaunter: React.Dispatch<React.SetStateAction<number>>;
   dataService: () => Promise<void>;
   listService: () => Promise<void>;
   getProfile: () => Promise<void>;
+  setImage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const GlobalStateContext = React.createContext({} as propsGlobal);
@@ -27,6 +29,7 @@ interface PropsGlobal {
   const [byService, setByService] = useState<ItypeService[]>([]);
   const [profile, setProfile] = useState({} as IProfile);
   const [counter, setCaunter] = useState<number>(0);
+  const [image, setImage] = useState(null);
   
   async function getProfile() {
     const token = await AsyncStorage.getItem("token");
@@ -55,10 +58,12 @@ interface PropsGlobal {
     byServiceMes,
     byService,
     counter,
+    image, 
     setCaunter,
     dataService,
     listService,
     getProfile,
+    setImage
   };
 
   return (
